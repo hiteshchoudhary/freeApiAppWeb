@@ -7,18 +7,18 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <a
-            href="https://github.com/hiteshchoudhary"
+            href="https://github.com/hiteshchoudhary/apihub"
             target="_blank"
             
         >
-          front end | mobile dev | Backend
+          <span className='text-sm md:text-md'>Need of every developer</span>
         </a>
           <code className={styles.code}></code>
         <div>
           <a
             href="https://youtube.com/hiteshchoudharydotcom"
             target="_blank"
-            rel="noopener noreferrer"
+            
           >
             Learn with your own APIs
           </a>
@@ -32,10 +32,10 @@ export default function Home() {
 
       </div>
       <a
-          href="https://youtube.com/hiteshchoudharydotcom"
+          href="https://github.com/hiteshchoudhary/apihub"
           className="bg-yellow-500 text-black font-medium p-2 px-4 rounded-lg"
           target="_blank"
-          rel="noopener noreferrer"
+          
         >A project by Hitesh Choudhary and team</a>
 
       <div className={styles.grid}>
@@ -44,7 +44,7 @@ export default function Home() {
           className={styles.card}
           
           target="_blank"
-          rel="noopener noreferrer"
+          
         >
           <h2>
             Cooked in Docs <span>-&gt;</span>
@@ -53,7 +53,7 @@ export default function Home() {
         </a>
 
         <Link
-          href="/videos"
+          href="#"
           className={styles.card}
           
         >
@@ -64,10 +64,10 @@ export default function Home() {
         </Link>
 
         <a
-          href="https://github.com/hiteshchoudhary"
+          href="https://github.com/hiteshchoudhary/apihub"
           className={styles.card}
           target="_blank"
-          rel="noopener noreferrer"
+          
         >
           <h2>
             Get project <span>-&gt;</span>
@@ -80,7 +80,7 @@ export default function Home() {
           href="#"
           className={styles.card}
           target="_blank"
-          rel="noopener noreferrer"
+          
         >
           <h2>
             Featured <span>-&gt;</span>
