@@ -33,7 +33,7 @@ export default function Home() {
       </div>
       <a
           href="https://github.com/hiteshchoudhary/apihub"
-          className="bg-yellow-500 text-black font-medium p-2 px-4 rounded-lg"
+          className="bg-yellow-500 text-black text-center font-medium py-2 px-4 rounded-lg mb-4 mx-2 relative min-w-max"
           target="_blank"
           
         >A project by Hitesh Choudhary and team</a>
