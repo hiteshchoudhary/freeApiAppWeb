@@ -53,7 +53,8 @@ export default function Home() {
         </a>
 
         <Link
-          href="#"
+          href="https://www.youtube.com/watch?v=xJq0EQMFGyg&list=PLRAV69dS1uWSx4erHGq8hW_GE-Eaj60r-"
+          target='_blank'
           className={styles.card}
           
         >
