@@ -39,8 +39,8 @@ export default function Home() {
         >A project by Hitesh Choudhary and team</a>
 
       <div className={styles.grid}>
-        <a
-          href="#"
+        <Link
+          href="https://api.freeapi.app"
           className={styles.card}
           
           target="_blank"
@@ -50,7 +50,7 @@ export default function Home() {
             Cooked in Docs <span>-&gt;</span>
           </h2>
           <p>Docs are cooked directly inside the project in easy to use swagger. With Swagger, you can read, learn and execute code within docs.</p>
-        </a>
+        </Link>
 
         <Link
           href="https://www.youtube.com/watch?v=xJq0EQMFGyg&list=PLRAV69dS1uWSx4erHGq8hW_GE-Eaj60r-"
