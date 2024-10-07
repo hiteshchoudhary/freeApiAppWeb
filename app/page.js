@@ -12,6 +12,7 @@ import {
   GraduationCap,
   Users,
   Globe,
+  Copy, // Import the Copy icon
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -239,6 +240,7 @@ function StudentBenefit({ icon, title, description }) {
 
 function CodeExamples() {
   const [activeTab, setActiveTab] = useState("javascript");
+  const [isCopied, setIsCopied] = useState(false);
 
   const codeExamples = {
     javascript: `const fetch = require('node-fetch');
@@ -267,8 +269,19 @@ print(response.text)`,
      --header 'accept: application/json'`,
   };
 
+  const handleCopy = (code) => {
+    navigator.clipboard.writeText(code)
+      .then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
-    <div className="bg-gray-800 rounded-lg overflow-hidden">
+    <div className="bg-gray-800 rounded-lg overflow-hidden relative">
       <div className="flex border-b border-gray-700">
         {Object.keys(codeExamples).map((lang) => (
           <button
@@ -284,9 +297,19 @@ print(response.text)`,
           </button>
         ))}
       </div>
-      <pre className="p-4 text-sm overflow-x-auto">
-        <code className="language-javascript">{codeExamples[activeTab]}</code>
-      </pre>
+      <div className="flex justify-between items-center p-4">
+        <pre className="text-sm overflow-x-auto">
+          <code className="language-javascript">{codeExamples[activeTab]}</code>
+        </pre>
+        <button
+          onClick={() => handleCopy(codeExamples[activeTab])}
+          className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${
+            isCopied ? "bg-green-500" : "bg-blue-600 hover:bg-blue-700"
+          } backdrop-blur-md bg-opacity-30`}
+        >
+          {isCopied ? "Copied" : <Copy className="w-5 h-5" />}
+        </button>
+      </div>
     </div>
   );
 }

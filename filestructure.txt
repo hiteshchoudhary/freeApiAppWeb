@@ -1,0 +1,20 @@
+|-- .eslintrc.json
+|-- .gitignore
+|-- app
+    |-- favicon.ico
+    |-- globals.css
+    |-- layout.js
+    |-- page.js
+    |-- page.module.css
+    |-- videos
+        |-- page.js
+|-- jsconfig.json
+|-- next.config.js
+|-- package-lock.json
+|-- package.json
+|-- postcss.config.js
+|-- public
+    |-- next.svg
+    |-- vercel.svg
+|-- README.md
+|-- tailwind.config.js
