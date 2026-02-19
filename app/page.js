@@ -478,7 +478,7 @@ export default function LandingPage() {
             transition={{ duration: 0.6, delay: 0.55 }}
           >
             <a
-              href="https://freeapi.app"
+              href="https://freeapi.hashnode.space/api-guide/apireference/getUsers"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30"
@@ -618,7 +618,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <a
-              href="https://freeapi.app"
+              href="https://freeapi.hashnode.space/api-guide/apireference/getUsers"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 font-medium text-sm transition-colors"
