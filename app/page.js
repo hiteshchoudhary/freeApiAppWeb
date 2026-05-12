@@ -116,7 +116,7 @@ function HeroTerminal() {
 
   return (
     <motion.div
-      className="relative w-full max-w-2xl mx-auto"
+      className="relative w-full max-w-2xl mx-auto px-1 sm:px-0"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
@@ -124,7 +124,7 @@ function HeroTerminal() {
       {/* Glow behind terminal */}
       <div className="absolute -inset-6 bg-gradient-to-r from-orange-500/10 via-transparent to-sky-500/10 rounded-3xl blur-2xl" />
 
-      <div className="relative rounded-xl overflow-hidden border border-slate-700/50 bg-[#0D1117] shadow-2xl shadow-black/40">
+      <div className="relative w-full rounded-xl overflow-hidden border border-slate-700/50 bg-[#0D1117] shadow-2xl shadow-black/40">
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-3 bg-[#161B22] border-b border-slate-700/50">
           <div className="flex gap-1.5">
@@ -138,7 +138,7 @@ function HeroTerminal() {
         </div>
 
         {/* Code content */}
-        <div className="p-5 font-mono text-[13px] leading-relaxed">
+        <div className="p-4 sm:p-5 font-mono text-[11px] sm:text-[13px] leading-snug sm:leading-relaxed whitespace-pre-wrap break-words">
           {lines.map((line, i) => (
             <motion.div
               key={i}
@@ -427,8 +427,8 @@ export default function LandingPage() {
       {/* ══════════════════════════════════════════════════════
           HERO
           ══════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-14 sm:pb-10 overflow-hidden">
+        <div className="w-full max-w-4xl mx-auto text-center">
           {/* Badge */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/50 mb-8"
@@ -448,7 +448,7 @@ export default function LandingPage() {
 
           {/* Headline */}
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-6 leading-[1.05]"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-5 sm:mb-6 leading-tight sm:leading-[1.05]"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -460,7 +460,7 @@ export default function LandingPage() {
 
           {/* Description */}
           <motion.p
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-1 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -472,7 +472,7 @@ export default function LandingPage() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mb-14 sm:mb-20 w-full max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
@@ -481,7 +481,7 @@ export default function LandingPage() {
               href="https://freeapi.hashnode.space/api-guide/apireference/getUsers"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30"
+              className="group flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 w-full sm:w-auto"
             >
               Explore APIs
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -490,7 +490,7 @@ export default function LandingPage() {
               href="https://github.com/hiteshchoudhary/apihub"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium px-7 py-3.5 rounded-xl transition-colors border border-slate-700"
+              className="flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium px-7 py-3.5 rounded-xl transition-colors border border-slate-700 w-full sm:w-auto"
             >
               <Github className="w-5 h-5" />
               View on GitHub
