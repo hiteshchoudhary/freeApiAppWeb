@@ -231,33 +231,40 @@ function ConstellationSVG() {
       })}
 
       {/* nodes */}
-      {nodes.map((n, i) => (
-        <g key={`n-${i}`}>
-          <circle cx={n.x} cy={n.y} r="18" fill="#0a0f1f" stroke={n.color} strokeWidth="1.5" />
-          <circle cx={n.x} cy={n.y} r="5" fill={n.color} className="pulse-soft" />
-          <g transform={`translate(${n.x + 22}, ${n.y + 4})`}>
-            <rect
-              x="0"
-              y="-12"
-              rx="6"
-              ry="6"
-              width={n.label.length * 6.4 + 14}
-              height="22"
-              fill="rgba(10,15,31,0.85)"
-              stroke="rgba(148,163,184,0.18)"
-            />
-            <text
-              x="7"
-              y="3"
-              fill="#cbd5e1"
-              fontSize="10.5"
-              fontFamily="var(--font-mono)"
-            >
-              {n.label}
-            </text>
+      {nodes.map((n, i) => {
+        const labelW = n.label.length * 6.4 + 14;
+        const onLeft = n.x > hub.x;
+        const dx = onLeft ? -(labelW + 22) : 22;
+        const textX = onLeft ? labelW - 7 : 7;
+        return (
+          <g key={`n-${i}`}>
+            <circle cx={n.x} cy={n.y} r="18" fill="#0a0f1f" stroke={n.color} strokeWidth="1.5" />
+            <circle cx={n.x} cy={n.y} r="5" fill={n.color} className="pulse-soft" />
+            <g transform={`translate(${n.x + dx}, ${n.y + 4})`}>
+              <rect
+                x="0"
+                y="-12"
+                rx="6"
+                ry="6"
+                width={labelW}
+                height="22"
+                fill="rgba(10,15,31,0.85)"
+                stroke="rgba(148,163,184,0.18)"
+              />
+              <text
+                x={textX}
+                y="3"
+                textAnchor={onLeft ? "end" : "start"}
+                fill="#cbd5e1"
+                fontSize="10.5"
+                fontFamily="var(--font-mono)"
+              >
+                {n.label}
+              </text>
+            </g>
           </g>
-        </g>
-      ))}
+        );
+      })}
 
       {/* hub */}
       <g>
