@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${outfit.variable} ${syne.variable} ${firaCode.variable}`}
     >
-      <body className="font-body bg-[#0B0F1A] text-slate-100 antialiased">
+      <body className="font-body antialiased">
         {children}
       </body>
     </html>
