@@ -80,6 +80,14 @@ function Nav() {
             <a href={DOCS_URL} className="hover:text-stone-50 transition inline-flex items-center gap-1">
               Docs
             </a>
+            <a
+              href="https://www.chaicode.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-stone-50 transition inline-flex items-center gap-1"
+            >
+              Learn <ArrowUpRight size={13} />
+            </a>
           </nav>
           <a
             href={REPO_URL}
