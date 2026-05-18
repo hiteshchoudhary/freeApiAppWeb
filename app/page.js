@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Github,
-  Star,
-  GitFork,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
@@ -40,26 +38,18 @@ const stagger = {
 function GradientBorder({ children, className = "" }) {
   return (
     <div className={`relative ${className}`}>
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-cyan-400/40 via-violet-500/30 to-lime-400/30 opacity-50 blur-sm" />
+      <div className="absolute -inset-px rounded-2xl bg-white/10 blur-[1px]" />
       <div className="relative rounded-2xl surface">{children}</div>
     </div>
   );
 }
 
-function SectionLabel({ children, color = "cyan" }) {
-  const colorMap = {
-    cyan: "text-cyan-300 bg-cyan-400/5 border-cyan-400/20",
-    lime: "text-lime-300 bg-lime-400/5 border-lime-400/20",
-    violet: "text-violet-300 bg-violet-400/5 border-violet-400/20",
-  };
+function SectionLabel({ children }) {
   return (
-    <span
-      className={`chip ${colorMap[color]}`}
-      style={{ fontFamily: "var(--font-mono)" }}
-    >
+    <span className="chip" style={{ fontFamily: "var(--font-mono)" }}>
       <span
         className="inline-block w-1.5 h-1.5 rounded-full pulse-soft"
-        style={{ background: "currentColor" }}
+        style={{ background: "#fbbf24" }}
       />
       {children}
     </span>
@@ -76,19 +66,18 @@ function Nav() {
           <a href="#top" className="flex items-center gap-2.5">
             <LogoMark size={28} />
             <span
-              className="text-[15px] tracking-tight font-semibold"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-[15px] tracking-tight font-semibold text-stone-50"
             >
-              freeAPI<span className="text-cyan-400">.</span>
-              <span className="text-slate-400 font-normal">app</span>
+              freeAPI<span className="text-amber-300">.</span>
+              <span className="text-stone-500 font-normal">app</span>
             </span>
           </a>
-          <nav className="hidden md:flex items-center gap-7 text-[13px] text-slate-300">
-            <a href="#endpoints" className="hover:text-white transition">Endpoints</a>
-            <a href="#anatomy" className="hover:text-white transition">Anatomy</a>
-            <a href="#playground" className="hover:text-white transition">Playground</a>
-            <a href="#why" className="hover:text-white transition">Why</a>
-            <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-white transition inline-flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-7 text-[13px] text-stone-400">
+            <a href="#endpoints" className="hover:text-stone-50 transition">Endpoints</a>
+            <a href="#anatomy" className="hover:text-stone-50 transition">Anatomy</a>
+            <a href="#playground" className="hover:text-stone-50 transition">Playground</a>
+            <a href="#why" className="hover:text-stone-50 transition">Why</a>
+            <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-stone-50 transition inline-flex items-center gap-1">
               Docs <ArrowUpRight size={13} />
             </a>
           </nav>
@@ -96,11 +85,11 @@ function Nav() {
             href={REPO_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 text-[13px] bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 px-3 py-1.5 rounded-xl transition"
+            className="inline-flex items-center gap-2 text-[13px] bg-stone-50 hover:bg-white text-stone-950 px-3 py-1.5 rounded-xl transition font-semibold"
           >
             <Github size={14} />
             <span className="hidden sm:inline">Star on GitHub</span>
-            <span className="text-slate-400">9.3k</span>
+            <span className="text-stone-500">9.3k</span>
           </a>
         </div>
       </div>
@@ -115,12 +104,11 @@ function LogoMark({ size = 32 }) {
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
       <defs>
         <linearGradient id="lg-mark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="60%" stopColor="#a3e635" />
-          <stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#a1a1aa" />
         </linearGradient>
       </defs>
-      <rect x="2" y="2" width="36" height="36" rx="10" fill="url(#lg-mark)" opacity="0.18" />
+      <rect x="2" y="2" width="36" height="36" rx="10" fill="#ffffff" opacity="0.08" />
       <path
         d="M11 25 L17 13 L29 13"
         stroke="url(#lg-mark)"
@@ -128,10 +116,10 @@ function LogoMark({ size = 32 }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="29" cy="13" r="2.6" fill="#a3e635">
+      <circle cx="29" cy="13" r="2.6" fill="#fbbf24">
         <animate attributeName="r" values="2.6;3.6;2.6" dur="2.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="11" cy="25" r="2.2" fill="#22d3ee" />
+      <circle cx="11" cy="25" r="2.2" fill="#ffffff" />
     </svg>
   );
 }
@@ -140,12 +128,12 @@ function LogoMark({ size = 32 }) {
 
 function ConstellationSVG() {
   const nodes = [
-    { x: 80, y: 70, label: "GET /users", color: "#22d3ee" },
-    { x: 360, y: 50, label: "POST /todos", color: "#a3e635" },
-    { x: 540, y: 130, label: "GET /products", color: "#f472b6" },
-    { x: 520, y: 320, label: "POST /login", color: "#a855f7" },
-    { x: 300, y: 380, label: "GET /quotes", color: "#22d3ee" },
-    { x: 70, y: 300, label: "GET /jokes", color: "#a3e635" },
+    { x: 80, y: 70, label: "GET /users", color: "#e5e5e5" },
+    { x: 360, y: 50, label: "POST /todos", color: "#fbbf24" },
+    { x: 540, y: 130, label: "GET /products", color: "#e5e5e5" },
+    { x: 520, y: 320, label: "POST /login", color: "#fbbf24" },
+    { x: 300, y: 380, label: "GET /quotes", color: "#e5e5e5" },
+    { x: 70, y: 300, label: "GET /jokes", color: "#e5e5e5" },
   ];
   const hub = { x: 300, y: 210 };
 
@@ -158,14 +146,14 @@ function ConstellationSVG() {
     >
       <defs>
         <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.8" />
-          <stop offset="60%" stopColor="#a855f7" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+          <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.3" />
+          <stop offset="60%" stopColor="#262626" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#262626" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="line-grad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.05" />
-          <stop offset="50%" stopColor="#a3e635" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.05" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.05" />
+          <stop offset="50%" stopColor="#ffffff" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05" />
         </linearGradient>
         <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="2" result="blur" />
@@ -176,14 +164,13 @@ function ConstellationSVG() {
         </filter>
       </defs>
 
-      {/* orbit rings */}
       <g className="orbit-slow" style={{ transformOrigin: `${hub.x}px ${hub.y}px` }}>
         <circle
           cx={hub.x}
           cy={hub.y}
           r="170"
           fill="none"
-          stroke="rgba(148,163,184,0.18)"
+          stroke="rgba(255,255,255,0.15)"
           strokeDasharray="2 6"
         />
       </g>
@@ -193,15 +180,13 @@ function ConstellationSVG() {
           cy={hub.y}
           r="120"
           fill="none"
-          stroke="rgba(34,211,238,0.18)"
+          stroke="rgba(255,255,255,0.18)"
           strokeDasharray="1 7"
         />
       </g>
 
-      {/* hub glow */}
       <circle cx={hub.x} cy={hub.y} r="120" fill="url(#hub-glow)" />
 
-      {/* connecting paths */}
       {nodes.map((n, i) => {
         const cx = (n.x + hub.x) / 2;
         const cy = (n.y + hub.y) / 2 - 30;
@@ -230,7 +215,6 @@ function ConstellationSVG() {
         );
       })}
 
-      {/* nodes */}
       {nodes.map((n, i) => {
         const labelW = n.label.length * 6.4 + 14;
         const onLeft = n.x > hub.x;
@@ -238,7 +222,7 @@ function ConstellationSVG() {
         const textX = onLeft ? labelW - 7 : 7;
         return (
           <g key={`n-${i}`}>
-            <circle cx={n.x} cy={n.y} r="18" fill="#0a0f1f" stroke={n.color} strokeWidth="1.5" />
+            <circle cx={n.x} cy={n.y} r="18" fill="#141414" stroke={n.color} strokeWidth="1.6" />
             <circle cx={n.x} cy={n.y} r="5" fill={n.color} className="pulse-soft" />
             <g transform={`translate(${n.x + dx}, ${n.y + 4})`}>
               <rect
@@ -248,14 +232,14 @@ function ConstellationSVG() {
                 ry="6"
                 width={labelW}
                 height="22"
-                fill="rgba(10,15,31,0.85)"
-                stroke="rgba(148,163,184,0.18)"
+                fill="#141414"
+                stroke="rgba(255,255,255,0.15)"
               />
               <text
                 x={textX}
                 y="3"
                 textAnchor={onLeft ? "end" : "start"}
-                fill="#cbd5e1"
+                fill="#d4d4d8"
                 fontSize="10.5"
                 fontFamily="var(--font-mono)"
               >
@@ -266,10 +250,9 @@ function ConstellationSVG() {
         );
       })}
 
-      {/* hub */}
       <g>
-        <circle cx={hub.x} cy={hub.y} r="40" fill="#0a0f1f" stroke="rgba(34,211,238,0.4)" />
-        <circle cx={hub.x} cy={hub.y} r="40" fill="none" stroke="#22d3ee" strokeOpacity="0.6">
+        <circle cx={hub.x} cy={hub.y} r="40" fill="#141414" stroke="#ffffff" strokeOpacity="0.5" strokeWidth="1.8" />
+        <circle cx={hub.x} cy={hub.y} r="40" fill="none" stroke="#fbbf24" strokeOpacity="0.6">
           <animate attributeName="r" values="40;52;40" dur="3.4s" repeatCount="indefinite" />
           <animate attributeName="stroke-opacity" values="0.6;0;0.6" dur="3.4s" repeatCount="indefinite" />
         </circle>
@@ -277,8 +260,8 @@ function ConstellationSVG() {
           x={hub.x}
           y={hub.y - 4}
           textAnchor="middle"
-          fill="#e6edf6"
-          fontSize="12"
+          fill="#fafafa"
+          fontSize="13"
           fontFamily="var(--font-display)"
           fontWeight="700"
         >
@@ -288,7 +271,7 @@ function ConstellationSVG() {
           x={hub.x}
           y={hub.y + 11}
           textAnchor="middle"
-          fill="#67e8f9"
+          fill="#a8a29e"
           fontSize="9"
           fontFamily="var(--font-mono)"
           letterSpacing="1"
@@ -306,29 +289,29 @@ function Hero() {
   return (
     <section id="top" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="aurora" />
-      <div className="absolute inset-0 grid-bg fade-radial opacity-60" />
+      <div className="absolute inset-0 grid-bg fade-radial opacity-70" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-[1.05fr_1fr] gap-10 items-center">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <motion.div variants={rise} className="mb-5">
-            <SectionLabel color="cyan">open-source · community-built</SectionLabel>
+            <SectionLabel>open-source · community-built</SectionLabel>
           </motion.div>
           <motion.h1
             variants={rise}
-            className="text-[44px] sm:text-6xl lg:text-[72px] leading-[1.02] tracking-tight font-semibold"
+            className="text-[44px] sm:text-6xl lg:text-[78px] leading-[1] tracking-tight uppercase text-stone-50"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Real APIs to{" "}
-            <span className="text-gradient">practice</span>,<br />
-            build, and <span className="text-gradient-cool">ship</span>.
+            <span className="text-accent">practice</span>,<br />
+            build, and <span className="text-stone-200 italic">ship</span>.
           </motion.h1>
           <motion.p
             variants={rise}
-            className="mt-6 max-w-xl text-[17px] leading-relaxed text-slate-300"
+            className="mt-6 max-w-xl text-[17px] leading-relaxed text-stone-400"
           >
             FreeAPI is a hub of production-style endpoints — auth, e-commerce, social,
             todos, and dozens more — so you can learn API integration on the same
             patterns you ship to production. No keys. No quotas. Just{" "}
-            <code className="text-cyan-300 font-mono text-[15px]">curl</code> and go.
+            <code className="text-amber-300 font-mono text-[15px] bg-stone-800 px-1.5 py-0.5 rounded">curl</code> and go.
           </motion.p>
 
           <motion.div variants={rise} className="mt-8 flex flex-wrap gap-3">
@@ -336,7 +319,7 @@ function Hero() {
               href={DOCS_URL}
               target="_blank"
               rel="noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-medium text-slate-900 bg-gradient-to-r from-cyan-300 via-lime-300 to-emerald-300 hover:from-cyan-200 hover:to-lime-200 transition"
+              className="group relative inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-950 bg-white hover:bg-stone-100 transition"
             >
               <BookOpen size={16} />
               Read the docs
@@ -346,17 +329,17 @@ function Hero() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-medium border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] transition"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-100 bg-transparent hover:bg-white/5 border border-stone-700 transition"
             >
               <Github size={16} />
               Star the repo
-              <span className="ml-1 text-slate-400 text-[12px] font-mono">★ 9.3k</span>
+              <span className="ml-1 text-stone-400 text-[12px] font-mono">★ 9.3k</span>
             </a>
           </motion.div>
 
           <motion.div
             variants={rise}
-            className="mt-10 flex items-center gap-6 text-[12px] text-slate-400 font-mono"
+            className="mt-10 flex items-center gap-6 text-[12px] text-stone-500 font-mono"
           >
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full pulse-soft" />
@@ -379,10 +362,9 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Endpoint marquee */}
-      <div className="relative mt-16 sm:mt-24 border-y border-white/[0.06] bg-black/30 overflow-hidden">
+      <div className="relative mt-16 sm:mt-24 border-y border-stone-800 bg-stone-900/40 overflow-hidden">
         <div className="py-4">
-          <div className="marquee-track text-[12px] font-mono text-slate-400">
+          <div className="marquee-track text-[12px] font-mono text-stone-500">
             {[...Array(2)].map((_, k) => (
               <span key={k} className="inline-flex items-center gap-10">
                 {[
@@ -400,9 +382,9 @@ function Hero() {
                   "GET /api/v1/public/books",
                 ].map((p, i) => (
                   <span key={`${k}-${i}`} className="inline-flex items-center gap-3">
-                    <span className="text-cyan-300/80">{p.split(" ")[0]}</span>
-                    <span className="text-slate-400">{p.split(" ")[1]}</span>
-                    <span className="text-slate-700">/</span>
+                    <span className="text-stone-200 font-semibold">{p.split(" ")[0]}</span>
+                    <span className="text-stone-500">{p.split(" ")[1]}</span>
+                    <span className="text-stone-700">/</span>
                   </span>
                 ))}
               </span>
@@ -421,15 +403,15 @@ function IconShop() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-shop" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" /><stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <rect x="6" y="14" width="44" height="34" rx="6" fill="none" stroke="url(#ig-shop)" strokeWidth="1.6" />
       <path d="M18 14 V10 a10 10 0 0 1 20 0 V14" fill="none" stroke="url(#ig-shop)" strokeWidth="1.6" />
-      <circle cx="22" cy="26" r="2" fill="#22d3ee">
+      <circle cx="22" cy="26" r="2" fill="#fbbf24">
         <animate attributeName="cy" values="26;30;26" dur="2.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="34" cy="26" r="2" fill="#a855f7">
+      <circle cx="34" cy="26" r="2" fill="#e5e5e5">
         <animate attributeName="cy" values="26;30;26" dur="2.4s" begin="0.6s" repeatCount="indefinite" />
       </circle>
     </svg>
@@ -441,14 +423,14 @@ function IconAuth() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-auth" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a3e635" /><stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <path d="M28 8 L46 16 V28 C46 38 38 46 28 50 C18 46 10 38 10 28 V16 Z"
         fill="none" stroke="url(#ig-auth)" strokeWidth="1.6" />
-      <circle cx="28" cy="26" r="4" fill="none" stroke="#a3e635" strokeWidth="1.6" />
-      <path d="M28 30 V36" stroke="#a3e635" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="28" cy="26" r="4" fill="#a3e635" opacity="0">
+      <circle cx="28" cy="26" r="4" fill="none" stroke="#fbbf24" strokeWidth="1.6" />
+      <path d="M28 30 V36" stroke="#fbbf24" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="28" cy="26" r="4" fill="#fbbf24" opacity="0">
         <animate attributeName="opacity" values="0;0.4;0" dur="2.6s" repeatCount="indefinite" />
       </circle>
     </svg>
@@ -460,12 +442,12 @@ function IconTodo() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-todo" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f472b6" /><stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <rect x="10" y="8" width="36" height="40" rx="5" fill="none" stroke="url(#ig-todo)" strokeWidth="1.6" />
-      <path d="M16 20 H40 M16 28 H40 M16 36 H32" stroke="rgba(203,213,225,0.4)" strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M15 19 l3 3 l5 -6" fill="none" stroke="#a3e635" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 20 H40 M16 28 H40 M16 36 H32" stroke="rgba(212,212,216,0.35)" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M15 19 l3 3 l5 -6" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="1.8s" repeatCount="indefinite" />
       </path>
     </svg>
@@ -477,15 +459,15 @@ function IconSocial() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-social" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" /><stop offset="100%" stopColor="#f472b6" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <circle cx="16" cy="20" r="6" fill="none" stroke="url(#ig-social)" strokeWidth="1.6" />
       <circle cx="40" cy="14" r="5" fill="none" stroke="url(#ig-social)" strokeWidth="1.6" />
       <circle cx="42" cy="40" r="6" fill="none" stroke="url(#ig-social)" strokeWidth="1.6" />
-      <path d="M21 22 L36 16 M22 24 L37 38" stroke="rgba(148,163,184,0.5)" strokeWidth="1.2" strokeDasharray="2 3" />
-      <circle r="2" fill="#22d3ee"><animateMotion dur="2.6s" repeatCount="indefinite" path="M21 22 L36 16" /></circle>
-      <circle r="2" fill="#f472b6"><animateMotion dur="3s" repeatCount="indefinite" path="M22 24 L37 38" /></circle>
+      <path d="M21 22 L36 16 M22 24 L37 38" stroke="rgba(212,212,216,0.4)" strokeWidth="1.2" strokeDasharray="2 3" />
+      <circle r="2" fill="#fbbf24"><animateMotion dur="2.6s" repeatCount="indefinite" path="M21 22 L36 16" /></circle>
+      <circle r="2" fill="#e5e5e5"><animateMotion dur="3s" repeatCount="indefinite" path="M22 24 L37 38" /></circle>
     </svg>
   );
 }
@@ -495,14 +477,14 @@ function IconPublic() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-pub" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a3e635" /><stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <circle cx="28" cy="28" r="18" fill="none" stroke="url(#ig-pub)" strokeWidth="1.6" />
-      <ellipse cx="28" cy="28" rx="18" ry="8" fill="none" stroke="rgba(148,163,184,0.4)" strokeWidth="1.2" />
-      <ellipse cx="28" cy="28" rx="8" ry="18" fill="none" stroke="rgba(148,163,184,0.4)" strokeWidth="1.2" />
+      <ellipse cx="28" cy="28" rx="18" ry="8" fill="none" stroke="rgba(212,212,216,0.4)" strokeWidth="1.2" />
+      <ellipse cx="28" cy="28" rx="8" ry="18" fill="none" stroke="rgba(212,212,216,0.4)" strokeWidth="1.2" />
       <g className="orbit-fast" style={{ transformOrigin: "28px 28px" }}>
-        <circle cx="46" cy="28" r="2.4" fill="#a3e635" />
+        <circle cx="46" cy="28" r="2.4" fill="#fbbf24" />
       </g>
     </svg>
   );
@@ -513,17 +495,17 @@ function IconKitchen() {
     <svg viewBox="0 0 56 56" className="w-12 h-12">
       <defs>
         <linearGradient id="ig-ks" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a855f7" /><stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <rect x="8" y="14" width="40" height="32" rx="4" fill="none" stroke="url(#ig-ks)" strokeWidth="1.6" />
-      <path d="M8 22 H48" stroke="rgba(148,163,184,0.4)" strokeWidth="1.2" />
-      <circle cx="13" cy="18" r="1.4" fill="#f472b6" />
-      <circle cx="18" cy="18" r="1.4" fill="#a3e635" />
-      <circle cx="23" cy="18" r="1.4" fill="#22d3ee" />
-      <text x="14" y="34" fill="#cbd5e1" fontSize="6" fontFamily="var(--font-mono)">GET POST</text>
-      <text x="14" y="42" fill="#67e8f9" fontSize="6" fontFamily="var(--font-mono)">PUT DELETE</text>
-      <rect x="40" y="30" width="4" height="4" fill="#a3e635">
+      <path d="M8 22 H48" stroke="rgba(212,212,216,0.35)" strokeWidth="1.2" />
+      <circle cx="13" cy="18" r="1.4" fill="#f87171" />
+      <circle cx="18" cy="18" r="1.4" fill="#fbbf24" />
+      <circle cx="23" cy="18" r="1.4" fill="#a3e635" />
+      <text x="14" y="34" fill="#d4d4d8" fontSize="6" fontFamily="var(--font-mono)">GET POST</text>
+      <text x="14" y="42" fill="#a8a29e" fontSize="6" fontFamily="var(--font-mono)">PUT DELETE</text>
+      <rect x="40" y="30" width="4" height="4" fill="#fbbf24">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" repeatCount="indefinite" />
       </rect>
     </svg>
@@ -576,16 +558,16 @@ function Endpoints() {
           variants={stagger}
         >
           <motion.div variants={rise}>
-            <SectionLabel color="lime">/explore the surface area</SectionLabel>
+            <SectionLabel>/explore the surface area</SectionLabel>
           </motion.div>
           <motion.h2
             variants={rise}
-            className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight"
+            className="mt-5 text-4xl sm:text-5xl tracking-tight uppercase text-stone-50"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Six lanes. <span className="text-gradient">Fifty-plus endpoints.</span>
+            Six lanes. <span className="text-accent">Fifty-plus endpoints.</span>
           </motion.h2>
-          <motion.p variants={rise} className="mt-4 max-w-2xl text-slate-300 text-[16px]">
+          <motion.p variants={rise} className="mt-4 max-w-2xl text-stone-400 text-[16px]">
             Each category mirrors a real backend you might build — so the skills carry over
             the moment you start your own project.
           </motion.p>
@@ -609,16 +591,15 @@ function Endpoints() {
                 <span className="chip">{c.count}</span>
               </div>
               <h3
-                className="text-xl font-semibold mb-2"
-                style={{ fontFamily: "var(--font-display)" }}
+                className="text-xl font-semibold mb-2 text-stone-50"
               >
                 {c.name}
               </h3>
-              <p className="text-[14px] text-slate-400 leading-relaxed">{c.desc}</p>
-              <ul className="mt-5 pt-5 border-t border-white/[0.06] space-y-1.5">
+              <p className="text-[14px] text-stone-400 leading-relaxed">{c.desc}</p>
+              <ul className="mt-5 pt-5 border-t border-stone-800 space-y-1.5">
                 {c.sample.map((s) => (
-                  <li key={s} className="text-[12px] font-mono text-slate-400 flex items-center gap-2">
-                    <span className="text-cyan-400/80">›</span>
+                  <li key={s} className="text-[12px] font-mono text-stone-400 flex items-center gap-2">
+                    <span className="text-stone-500">›</span>
                     <span className="truncate">{s}</span>
                   </li>
                 ))}
@@ -638,12 +619,12 @@ function RequestFlowSVG() {
     <svg viewBox="0 0 760 260" className="w-full h-auto">
       <defs>
         <linearGradient id="rf-line" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#fbbf24" />
         </linearGradient>
         <linearGradient id="rf-line-back" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#a3e635" />
-          <stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.7" />
         </linearGradient>
         <filter id="rf-glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="2" result="blur" />
@@ -654,57 +635,53 @@ function RequestFlowSVG() {
         </filter>
       </defs>
 
-      {/* Client box */}
       <g>
-        <rect x="20" y="60" width="160" height="140" rx="14" fill="rgba(10,15,31,0.7)" stroke="rgba(34,211,238,0.4)" />
-        <text x="100" y="86" textAnchor="middle" fill="#94a3b8" fontSize="11" fontFamily="var(--font-mono)">your app</text>
+        <rect x="20" y="60" width="160" height="140" rx="14" fill="#141414" stroke="rgba(255,255,255,0.18)" />
+        <text x="100" y="86" textAnchor="middle" fill="#a8a29e" fontSize="11" fontFamily="var(--font-mono)">your app</text>
         <g transform="translate(40,108)">
-          <rect width="120" height="22" rx="5" fill="rgba(34,211,238,0.08)" />
-          <text x="10" y="15" fill="#67e8f9" fontSize="11" fontFamily="var(--font-mono)">fetch(url)</text>
+          <rect width="120" height="22" rx="5" fill="rgba(255,255,255,0.04)" />
+          <text x="10" y="15" fill="#d4d4d8" fontSize="11" fontFamily="var(--font-mono)">fetch(url)</text>
         </g>
         <g transform="translate(40,138)">
-          <rect width="120" height="22" rx="5" fill="rgba(163,230,53,0.08)" />
-          <text x="10" y="15" fill="#bef264" fontSize="11" fontFamily="var(--font-mono)">await res</text>
+          <rect width="120" height="22" rx="5" fill="rgba(255,255,255,0.04)" />
+          <text x="10" y="15" fill="#d4d4d8" fontSize="11" fontFamily="var(--font-mono)">await res</text>
         </g>
         <g transform="translate(40,168)">
-          <rect width="120" height="22" rx="5" fill="rgba(168,85,247,0.08)" />
-          <text x="10" y="15" fill="#d8b4fe" fontSize="11" fontFamily="var(--font-mono)">render(data)</text>
+          <rect width="120" height="22" rx="5" fill="rgba(255,255,255,0.04)" />
+          <text x="10" y="15" fill="#d4d4d8" fontSize="11" fontFamily="var(--font-mono)">render(data)</text>
         </g>
       </g>
 
-      {/* Server box */}
       <g>
-        <rect x="580" y="60" width="160" height="140" rx="14" fill="rgba(10,15,31,0.7)" stroke="rgba(168,85,247,0.4)" />
-        <text x="660" y="86" textAnchor="middle" fill="#94a3b8" fontSize="11" fontFamily="var(--font-mono)">api.freeapi.app</text>
+        <rect x="580" y="60" width="160" height="140" rx="14" fill="#141414" stroke="rgba(255,255,255,0.18)" />
+        <text x="660" y="86" textAnchor="middle" fill="#a8a29e" fontSize="11" fontFamily="var(--font-mono)">api.freeapi.app</text>
         <g transform="translate(600, 100)">
-          <circle cx="8" cy="8" r="3" fill="#22d3ee" />
-          <text x="20" y="12" fill="#cbd5e1" fontSize="11" fontFamily="var(--font-mono)">/quotes</text>
-          <circle cx="8" cy="28" r="3" fill="#a3e635" />
-          <text x="20" y="32" fill="#cbd5e1" fontSize="11" fontFamily="var(--font-mono)">/products</text>
-          <circle cx="8" cy="48" r="3" fill="#f472b6" />
-          <text x="20" y="52" fill="#cbd5e1" fontSize="11" fontFamily="var(--font-mono)">/login</text>
-          <circle cx="8" cy="68" r="3" fill="#a855f7" />
-          <text x="20" y="72" fill="#cbd5e1" fontSize="11" fontFamily="var(--font-mono)">/todos</text>
+          <circle cx="8" cy="8" r="3" fill="#e5e5e5" />
+          <text x="20" y="12" fill="#e7e5e4" fontSize="11" fontFamily="var(--font-mono)">/quotes</text>
+          <circle cx="8" cy="28" r="3" fill="#fbbf24" />
+          <text x="20" y="32" fill="#e7e5e4" fontSize="11" fontFamily="var(--font-mono)">/products</text>
+          <circle cx="8" cy="48" r="3" fill="#e5e5e5" />
+          <text x="20" y="52" fill="#e7e5e4" fontSize="11" fontFamily="var(--font-mono)">/login</text>
+          <circle cx="8" cy="68" r="3" fill="#e5e5e5" />
+          <text x="20" y="72" fill="#e7e5e4" fontSize="11" fontFamily="var(--font-mono)">/todos</text>
         </g>
       </g>
 
-      {/* request path */}
-      <path id="req-path" d="M180 110 C 320 70, 440 70, 580 110" fill="none" stroke="url(#rf-line)" strokeWidth="1.6" strokeDasharray="4 6" />
-      <text x="380" y="60" textAnchor="middle" fill="#67e8f9" fontSize="11" fontFamily="var(--font-mono)">
+      <path id="req-path" d="M180 110 C 320 70, 440 70, 580 110" fill="none" stroke="url(#rf-line)" strokeWidth="1.8" strokeDasharray="4 6" />
+      <text x="380" y="60" textAnchor="middle" fill="#e5e5e5" fontSize="11" fontFamily="var(--font-mono)">
         GET /api/v1/public/quotes/random
       </text>
-      <circle r="5" fill="#22d3ee" filter="url(#rf-glow)">
+      <circle r="5" fill="#fbbf24" filter="url(#rf-glow)">
         <animateMotion dur="3s" repeatCount="indefinite">
           <mpath href="#req-path" />
         </animateMotion>
       </circle>
 
-      {/* response path */}
-      <path id="res-path" d="M580 150 C 440 190, 320 190, 180 150" fill="none" stroke="url(#rf-line-back)" strokeWidth="1.6" strokeDasharray="4 6" />
-      <text x="380" y="220" textAnchor="middle" fill="#bef264" fontSize="11" fontFamily="var(--font-mono)">
+      <path id="res-path" d="M580 150 C 440 190, 320 190, 180 150" fill="none" stroke="url(#rf-line-back)" strokeWidth="1.8" strokeDasharray="4 6" />
+      <text x="380" y="220" textAnchor="middle" fill="#a3e635" fontSize="11" fontFamily="var(--font-mono)">
         200 OK · application/json
       </text>
-      <circle r="5" fill="#a3e635" filter="url(#rf-glow)">
+      <circle r="5" fill="#ffffff" filter="url(#rf-glow)">
         <animateMotion dur="3s" begin="1.4s" repeatCount="indefinite">
           <mpath href="#res-path" />
         </animateMotion>
@@ -715,7 +692,7 @@ function RequestFlowSVG() {
 
 function Anatomy() {
   return (
-    <section id="anatomy" className="relative py-24 sm:py-32 border-t border-white/[0.05]">
+    <section id="anatomy" className="relative py-24 sm:py-32 border-t border-stone-800/80">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-center">
           <motion.div
@@ -725,21 +702,21 @@ function Anatomy() {
             variants={stagger}
           >
             <motion.div variants={rise}>
-              <SectionLabel color="violet">{"// how it flows"}</SectionLabel>
+              <SectionLabel>{"// how it flows"}</SectionLabel>
             </motion.div>
             <motion.h2
               variants={rise}
-              className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight"
+              className="mt-5 text-4xl sm:text-5xl tracking-tight uppercase text-stone-50"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              From <span className="text-gradient-cool">fetch</span> to{" "}
-              <span className="text-gradient-cool">render</span> — the same{" "}
+              From <span className="text-accent">fetch</span> to{" "}
+              <span className="text-accent">render</span> — the same{" "}
               shape as production.
             </motion.h2>
-            <motion.p variants={rise} className="mt-5 text-slate-300 text-[16px] leading-relaxed">
+            <motion.p variants={rise} className="mt-5 text-stone-400 text-[16px] leading-relaxed">
               Every endpoint returns a consistent envelope: a status code, a
               human-readable message, and a typed{" "}
-              <code className="font-mono text-cyan-300">data</code> payload. So when you
+              <code className="font-mono text-amber-300 bg-stone-800 px-1.5 py-0.5 rounded">data</code> payload. So when you
               move to your own backend, the contract you learned still holds.
             </motion.p>
             <motion.ul variants={rise} className="mt-7 space-y-3">
@@ -749,8 +726,8 @@ function Anatomy() {
                 "Real error shapes — 400s, 401s, 404s, 422s",
                 "Cookie & bearer auth, both supported",
               ].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-[14px] text-slate-300">
-                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-lime-400 shrink-0" />
+                <li key={t} className="flex items-start gap-3 text-[14px] text-stone-300">
+                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-300 shrink-0" />
                   {t}
                 </li>
               ))}
@@ -816,62 +793,64 @@ function Playground() {
   };
 
   return (
-    <section id="playground" className="relative py-24 sm:py-32 border-t border-white/[0.05]">
+    <section id="playground" className="relative py-24 sm:py-32 border-t border-stone-800/80">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mb-12 text-center">
-          <SectionLabel color="cyan">$ try it now</SectionLabel>
+          <SectionLabel>$ try it now</SectionLabel>
           <h2
-            className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight"
+            className="mt-5 text-4xl sm:text-5xl tracking-tight uppercase text-stone-50"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            One line away from a <span className="text-gradient">live response</span>.
+            One line away from a <span className="text-accent">live response</span>.
           </h2>
         </div>
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-5">
-          {/* terminal */}
-          <GradientBorder>
-            <div className="p-5 sm:p-6">
+          <div className="relative">
+            <div className="absolute -inset-px rounded-2xl bg-white/10 blur-[1px]" />
+            <div className="relative rounded-2xl bg-stone-950 border border-stone-800 p-5 sm:p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-400/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-300/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+                <span className="text-[11px] font-mono text-stone-500 flex items-center gap-1.5">
                   <Terminal size={11} /> ~/freeapi
                 </span>
                 <button
                   onClick={copy}
-                  className="text-[11px] text-slate-400 hover:text-white inline-flex items-center gap-1.5"
+                  className="text-[11px] text-stone-400 hover:text-amber-200 inline-flex items-center gap-1.5"
                   aria-label="Copy command"
                 >
                   {copied ? <Check size={12} /> : <Copy size={12} />}
                   {copied ? "copied" : "copy"}
                 </button>
               </div>
-              <pre className="font-mono text-[13px] leading-6 text-slate-200 whitespace-pre-wrap">
+              <pre className="font-mono text-[13px] leading-6 text-stone-200 whitespace-pre-wrap">
                 <span className="text-emerald-400">$</span>{" "}
-                <span className="text-cyan-300">curl</span>{" "}
-                <span className="text-slate-200">{typed.slice("curl ".length)}</span>
-                <span className="caret text-slate-200" />
+                <span className="text-amber-300">curl</span>{" "}
+                <span className="text-stone-200">{typed.slice("curl ".length)}</span>
+                <span className="caret text-stone-200" />
               </pre>
             </div>
-          </GradientBorder>
+          </div>
 
-          {/* response */}
-          <GradientBorder>
-            <div className="p-5 sm:p-6 min-h-[270px]">
+          <div className="relative">
+            <div className="absolute -inset-px rounded-2xl bg-white/10 blur-[1px]" />
+            <div className="relative rounded-2xl bg-stone-950 border border-stone-800 p-5 sm:p-6 min-h-[270px]">
               <div className="flex items-center justify-between mb-4">
-                <span className="chip"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> 200 OK</span>
-                <span className="text-[11px] font-mono text-slate-500">application/json · 84ms</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-[11px] font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> 200 OK
+                </span>
+                <span className="text-[11px] font-mono text-stone-500">application/json · 84ms</span>
               </div>
               {!showJson ? (
-                <div className="flex items-center gap-2 text-slate-500 text-[13px] font-mono">
+                <div className="flex items-center gap-2 text-stone-400 text-[13px] font-mono">
                   <span className="inline-flex">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mx-0.5 pulse-soft" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mx-0.5 pulse-soft" style={{ animationDelay: "0.2s" }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mx-0.5 pulse-soft" style={{ animationDelay: "0.4s" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-300 mx-0.5 pulse-soft" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-300 mx-0.5 pulse-soft" style={{ animationDelay: "0.2s" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-300 mx-0.5 pulse-soft" style={{ animationDelay: "0.4s" }} />
                   </span>
                   awaiting request…
                 </div>
@@ -880,27 +859,27 @@ function Playground() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="font-mono text-[13px] leading-6 text-slate-300"
+                  className="font-mono text-[13px] leading-6 text-stone-300"
                 >
 {`{
-  `}<span className="text-cyan-300">&quot;statusCode&quot;</span>{`: `}<span className="text-amber-300">200</span>{`,
-  `}<span className="text-cyan-300">&quot;data&quot;</span>{`: {
-    `}<span className="text-cyan-300">&quot;content&quot;</span>{`: `}<span className="text-lime-300">&quot;Stay hungry, stay foolish.&quot;</span>{`,
-    `}<span className="text-cyan-300">&quot;author&quot;</span>{`: `}<span className="text-lime-300">&quot;Steve Jobs&quot;</span>{`,
-    `}<span className="text-cyan-300">&quot;tags&quot;</span>{`: [`}<span className="text-lime-300">&quot;wisdom&quot;</span>{`, `}<span className="text-lime-300">&quot;life&quot;</span>{`]
+  `}<span className="text-amber-300">&quot;statusCode&quot;</span>{`: `}<span className="text-amber-400">200</span>{`,
+  `}<span className="text-amber-300">&quot;data&quot;</span>{`: {
+    `}<span className="text-amber-300">&quot;content&quot;</span>{`: `}<span className="text-emerald-300">&quot;Stay hungry, stay foolish.&quot;</span>{`,
+    `}<span className="text-amber-300">&quot;author&quot;</span>{`: `}<span className="text-emerald-300">&quot;Steve Jobs&quot;</span>{`,
+    `}<span className="text-amber-300">&quot;tags&quot;</span>{`: [`}<span className="text-emerald-300">&quot;wisdom&quot;</span>{`, `}<span className="text-emerald-300">&quot;life&quot;</span>{`]
   },
-  `}<span className="text-cyan-300">&quot;message&quot;</span>{`: `}<span className="text-lime-300">&quot;Quote fetched successfully&quot;</span>{`,
-  `}<span className="text-cyan-300">&quot;success&quot;</span>{`: `}<span className="text-violet-300">true</span>{`
+  `}<span className="text-amber-300">&quot;message&quot;</span>{`: `}<span className="text-emerald-300">&quot;Quote fetched successfully&quot;</span>{`,
+  `}<span className="text-amber-300">&quot;success&quot;</span>{`: `}<span className="text-amber-400">true</span>{`
 }`}
                 </motion.pre>
               )}
             </div>
-          </GradientBorder>
+          </div>
         </div>
 
-        <div className="mt-8 text-center text-[13px] text-slate-400">
+        <div className="mt-8 text-center text-[13px] text-stone-500">
           No API key. No sign-up. The base URL is{" "}
-          <code className="font-mono text-cyan-300">{BASE_URL}</code>.
+          <code className="font-mono text-amber-300 bg-stone-800 px-1.5 py-0.5 rounded">{BASE_URL}</code>.
         </div>
       </div>
     </section>
@@ -914,13 +893,13 @@ function IconLearn() {
     <svg viewBox="0 0 64 64" className="w-14 h-14">
       <defs>
         <linearGradient id="il-1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" /><stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <path d="M8 22 L32 12 L56 22 L32 32 Z" fill="none" stroke="url(#il-1)" strokeWidth="1.6" strokeLinejoin="round" />
       <path d="M18 28 V40 C 22 46, 42 46, 46 40 V28" fill="none" stroke="url(#il-1)" strokeWidth="1.6" />
-      <line x1="56" y1="22" x2="56" y2="40" stroke="#a3e635" strokeWidth="1.6" />
-      <circle cx="56" cy="42" r="2" fill="#a3e635">
+      <line x1="56" y1="22" x2="56" y2="40" stroke="#fbbf24" strokeWidth="1.6" />
+      <circle cx="56" cy="42" r="2" fill="#fbbf24">
         <animate attributeName="cy" values="42;46;42" dur="2s" repeatCount="indefinite" />
       </circle>
     </svg>
@@ -932,16 +911,16 @@ function IconOSS() {
     <svg viewBox="0 0 64 64" className="w-14 h-14">
       <defs>
         <linearGradient id="ix-1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a3e635" /><stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <circle cx="20" cy="22" r="6" fill="none" stroke="url(#ix-1)" strokeWidth="1.6" />
       <circle cx="44" cy="22" r="6" fill="none" stroke="url(#ix-1)" strokeWidth="1.6" />
       <circle cx="32" cy="48" r="6" fill="none" stroke="url(#ix-1)" strokeWidth="1.6" />
-      <path d="M20 28 V36 C 20 42, 32 42, 32 48 M44 28 V36 C 44 42, 32 42, 32 48" fill="none" stroke="rgba(148,163,184,0.5)" strokeWidth="1.4" />
-      <circle cx="20" cy="22" r="2.5" fill="#22d3ee" className="pulse-soft" />
-      <circle cx="44" cy="22" r="2.5" fill="#a855f7" className="pulse-soft" />
-      <circle cx="32" cy="48" r="2.5" fill="#a3e635" className="pulse-soft" />
+      <path d="M20 28 V36 C 20 42, 32 42, 32 48 M44 28 V36 C 44 42, 32 42, 32 48" fill="none" stroke="rgba(212,212,216,0.45)" strokeWidth="1.4" />
+      <circle cx="20" cy="22" r="2.5" fill="#e5e5e5" className="pulse-soft" />
+      <circle cx="44" cy="22" r="2.5" fill="#fbbf24" className="pulse-soft" />
+      <circle cx="32" cy="48" r="2.5" fill="#e5e5e5" className="pulse-soft" />
     </svg>
   );
 }
@@ -951,19 +930,19 @@ function IconSelfHost() {
     <svg viewBox="0 0 64 64" className="w-14 h-14">
       <defs>
         <linearGradient id="ish-1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f472b6" /><stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <rect x="10" y="12" width="44" height="14" rx="3" fill="none" stroke="url(#ish-1)" strokeWidth="1.6" />
       <rect x="10" y="30" width="44" height="14" rx="3" fill="none" stroke="url(#ish-1)" strokeWidth="1.6" />
       <rect x="10" y="48" width="44" height="10" rx="3" fill="none" stroke="url(#ish-1)" strokeWidth="1.6" />
-      <circle cx="16" cy="19" r="1.6" fill="#a3e635">
+      <circle cx="16" cy="19" r="1.6" fill="#fbbf24">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="16" cy="37" r="1.6" fill="#22d3ee">
+      <circle cx="16" cy="37" r="1.6" fill="#e5e5e5">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="0.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="16" cy="53" r="1.6" fill="#f472b6">
+      <circle cx="16" cy="53" r="1.6" fill="#e5e5e5">
         <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="0.8s" repeatCount="indefinite" />
       </circle>
     </svg>
@@ -975,13 +954,13 @@ function IconTested() {
     <svg viewBox="0 0 64 64" className="w-14 h-14">
       <defs>
         <linearGradient id="it-1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" /><stop offset="100%" stopColor="#a3e635" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" /><stop offset="100%" stopColor="#71717a" />
         </linearGradient>
       </defs>
       <path d="M16 8 H40 L52 20 V52 a4 4 0 0 1 -4 4 H16 a4 4 0 0 1 -4 -4 V12 a4 4 0 0 1 4 -4 Z"
         fill="none" stroke="url(#it-1)" strokeWidth="1.6" />
       <path d="M40 8 V20 H52" fill="none" stroke="url(#it-1)" strokeWidth="1.6" />
-      <path d="M22 38 l6 6 l14 -14" fill="none" stroke="#a3e635" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="40" strokeDashoffset="40">
+      <path d="M22 38 l6 6 l14 -14" fill="none" stroke="#fbbf24" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="40" strokeDashoffset="40">
         <animate attributeName="stroke-dashoffset" values="40;0;0;40" dur="3.4s" repeatCount="indefinite" />
       </path>
     </svg>
@@ -996,15 +975,15 @@ function Why() {
     { icon: <IconTested />, title: "Documented & tested", body: "Swagger docs, Postman collections, and Playwright integration tests come baked in." },
   ];
   return (
-    <section id="why" className="relative py-24 sm:py-32 border-t border-white/[0.05]">
+    <section id="why" className="relative py-24 sm:py-32 border-t border-stone-800/80">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="text-center mb-14">
-          <SectionLabel color="violet">{"/* why developers choose it */"}</SectionLabel>
+          <SectionLabel>{"/* why developers choose it */"}</SectionLabel>
           <h2
-            className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight"
+            className="mt-5 text-4xl sm:text-5xl tracking-tight uppercase text-stone-50"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Not a fake API. A <span className="text-gradient">real one</span>, free forever.
+            Not a fake API. A <span className="text-accent">real one</span>, free forever.
           </h2>
         </div>
         <motion.div
@@ -1017,10 +996,10 @@ function Why() {
           {items.map((it) => (
             <motion.div key={it.title} variants={rise} className="surface surface-hover rounded-2xl p-6">
               <div className="mb-5">{it.icon}</div>
-              <h3 className="text-[17px] font-semibold mb-2" style={{ fontFamily: "var(--font-display)" }}>
+              <h3 className="text-[17px] font-semibold mb-2 text-stone-50">
                 {it.title}
               </h3>
-              <p className="text-[13.5px] text-slate-400 leading-relaxed">{it.body}</p>
+              <p className="text-[13.5px] text-stone-400 leading-relaxed">{it.body}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -1055,25 +1034,25 @@ function Stat({ value, suffix = "", label, color }) {
   return (
     <div ref={ref} className="relative">
       <div
-        className="text-5xl sm:text-6xl font-semibold tracking-tight"
+        className="text-5xl sm:text-6xl tracking-tight"
         style={{ fontFamily: "var(--font-display)", color }}
       >
         {n.toLocaleString()}{suffix}
       </div>
-      <div className="mt-2 text-[12px] uppercase tracking-[0.18em] text-slate-500 font-mono">{label}</div>
+      <div className="mt-2 text-[12px] uppercase tracking-[0.18em] text-stone-500 font-mono">{label}</div>
     </div>
   );
 }
 
 function StatsBar() {
   return (
-    <section className="relative py-20 border-t border-white/[0.05]">
+    <section className="relative py-20 border-t border-stone-800/80">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="surface rounded-2xl p-8 sm:p-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <Stat value={9300} suffix="+" label="GitHub stars" color="#67e8f9" />
-          <Stat value={1400} suffix="+" label="Forks" color="#bef264" />
-          <Stat value={50} suffix="+" label="Endpoints" color="#f0abfc" />
-          <Stat value={100} suffix="%" label="Free, always" color="#a3e635" />
+          <Stat value={9300} suffix="+" label="GitHub stars" color="#fafafa" />
+          <Stat value={1400} suffix="+" label="Forks" color="#fafafa" />
+          <Stat value={50} suffix="+" label="Endpoints" color="#fbbf24" />
+          <Stat value={100} suffix="%" label="Free, always" color="#fafafa" />
         </div>
       </div>
     </section>
@@ -1086,24 +1065,27 @@ function CTA() {
   return (
     <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/[0.08] via-violet-500/[0.06] to-lime-500/[0.08] p-10 sm:p-16 text-center">
-          {/* decorative SVG */}
+        <div className="relative overflow-hidden rounded-3xl border border-stone-800 bg-stone-900/60 p-10 sm:p-16 text-center">
           <svg className="absolute -top-20 -right-20 w-80 h-80 opacity-40" viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="80" stroke="rgba(34,211,238,0.4)" strokeDasharray="2 6" />
-            <circle cx="100" cy="100" r="60" stroke="rgba(168,85,247,0.4)" strokeDasharray="2 6" />
-            <circle cx="100" cy="100" r="40" stroke="rgba(163,230,53,0.4)" strokeDasharray="2 6" />
+            <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.18)" strokeDasharray="2 6" />
+            <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.14)" strokeDasharray="2 6" />
+            <circle cx="100" cy="100" r="40" stroke="rgba(251,191,36,0.35)" strokeDasharray="2 6" />
+          </svg>
+          <svg className="absolute -bottom-16 -left-16 w-64 h-64 opacity-30" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.18)" strokeDasharray="1 5" />
+            <circle cx="100" cy="100" r="50" stroke="rgba(255,255,255,0.14)" strokeDasharray="1 5" />
           </svg>
 
           <div className="relative">
-            <Sparkles className="mx-auto mb-4 text-cyan-300" size={22} />
+            <Sparkles className="mx-auto mb-4 text-amber-300" size={22} />
             <h2
-              className="text-4xl sm:text-5xl font-semibold tracking-tight"
+              className="text-4xl sm:text-5xl tracking-tight uppercase text-stone-50"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Build the project<br />
-              you’ve been <span className="text-gradient">putting off</span>.
+              you’ve been <span className="text-accent">putting off</span>.
             </h2>
-            <p className="mt-5 max-w-xl mx-auto text-slate-300">
+            <p className="mt-5 max-w-xl mx-auto text-stone-300">
               Pick a category, read three pages of docs, and ship something this weekend.
               The endpoints are waiting.
             </p>
@@ -1112,7 +1094,7 @@ function CTA() {
                 href={DOCS_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-medium text-slate-900 bg-gradient-to-r from-cyan-300 via-lime-300 to-emerald-300 hover:from-cyan-200 hover:to-lime-200 transition"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-950 bg-white hover:bg-stone-100 transition"
               >
                 <BookOpen size={16} /> Start with the docs <ArrowRight size={15} />
               </a>
@@ -1120,7 +1102,7 @@ function CTA() {
                 href={REPO_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-medium border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-100 bg-transparent hover:bg-white/5 border border-stone-700 transition"
               >
                 <Github size={16} /> View source
               </a>
@@ -1134,20 +1116,20 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/[0.05] py-10">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-slate-500">
+    <footer className="border-t border-stone-800 py-10 bg-stone-900/40">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-stone-500">
         <div className="flex items-center gap-2.5">
           <LogoMark size={22} />
           <span className="font-mono">freeapi.app · MIT</span>
         </div>
         <div className="flex items-center gap-5">
-          <a href={REPO_URL} target="_blank" rel="noreferrer" className="hover:text-white inline-flex items-center gap-1.5">
+          <a href={REPO_URL} target="_blank" rel="noreferrer" className="hover:text-stone-100 inline-flex items-center gap-1.5">
             <Github size={14} /> GitHub
           </a>
-          <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-white inline-flex items-center gap-1.5">
+          <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-stone-100 inline-flex items-center gap-1.5">
             <BookOpen size={14} /> Docs
           </a>
-          <a href="https://www.youtube.com/playlist?list=PLu71SKxNbfoBAaWGtn9GA2PTw0HO0tXzq" target="_blank" rel="noreferrer" className="hover:text-white">
+          <a href="https://www.youtube.com/playlist?list=PLu71SKxNbfoBAaWGtn9GA2PTw0HO0tXzq" target="_blank" rel="noreferrer" className="hover:text-stone-100">
             YouTube
           </a>
         </div>
@@ -1155,7 +1137,7 @@ function Footer() {
           href="https://chaicode.com"
           target="_blank"
           rel="noreferrer"
-          className="font-mono hover:text-white transition"
+          className="font-mono hover:text-stone-100 transition"
         >
           made with ♥ by chaicode
         </a>

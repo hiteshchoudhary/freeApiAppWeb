@@ -1,19 +1,20 @@
 import "./globals.css";
-import { Outfit, Syne, Fira_Code } from "next/font/google";
+import { Manrope, Anton, JetBrains_Mono } from "next/font/google";
 
-const outfit = Outfit({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const syne = Syne({
+const anton = Anton({
   subsets: ["latin"],
+  weight: "400",
   variable: "--font-display",
   display: "swap",
 });
 
-const firaCode = Fira_Code({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${syne.variable} ${firaCode.variable}`}
+      className={`${manrope.variable} ${anton.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-body antialiased">
         {children}

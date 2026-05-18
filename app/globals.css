@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg-0: #060814;
-  --bg-1: #0a0f1f;
-  --ink: #e6edf6;
-  --muted: #8a93a6;
-  --cyan: #22d3ee;
-  --lime: #a3e635;
-  --violet: #a855f7;
-  --pink: #f472b6;
-  --line: rgba(148, 163, 184, 0.12);
+  --bg-0: #0a0a0a;
+  --bg-1: #111111;
+  --ink: #fafafa;
+  --muted: #a1a1aa;
+  --line: rgba(255, 255, 255, 0.08);
+  --accent: #fbbf24;
+  --surface-1: #141414;
+  --surface-2: #1a1a1a;
+  --code-bg: #0a0a0a;
 }
 
 * {
@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 html,
@@ -40,15 +41,15 @@ body {
   background: var(--bg-0);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e2742;
+  background: #262626;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3457;
+  background: #404040;
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.35);
+  background: rgba(255, 255, 255, 0.18);
   color: #fff;
 }
 
@@ -59,8 +60,8 @@ a {
 
 /* Grid backdrop */
 .grid-bg {
-  background-image: linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
   background-position: -1px -1px;
 }
@@ -71,35 +72,28 @@ a {
   mask-image: radial-gradient(ellipse at center, #000 40%, transparent 75%);
 }
 
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(120deg, #22d3ee 0%, #a3e635 50%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Highlight tokens — solid, no gradients */
+.text-accent {
+  color: #fbbf24;
 }
-
-.text-gradient-cool {
-  background: linear-gradient(120deg, #67e8f9, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.text-highlight {
+  color: #fafafa;
+  font-style: italic;
 }
 
 /* Cards */
 .surface {
-  background: linear-gradient(180deg, rgba(17, 24, 45, 0.7), rgba(10, 15, 31, 0.55));
+  background: #141414;
   border: 1px solid var(--line);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02), 0 12px 30px -16px rgba(0, 0, 0, 0.5);
 }
 
 .surface-hover {
-  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .surface-hover:hover {
-  border-color: rgba(34, 211, 238, 0.35);
-  background: linear-gradient(180deg, rgba(20, 28, 52, 0.85), rgba(12, 17, 35, 0.7));
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -18px rgba(0, 0, 0, 0.6);
   transform: translateY(-3px);
 }
 
@@ -113,9 +107,9 @@ a {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.02em;
-  background: rgba(148, 163, 184, 0.06);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line);
-  color: #cbd5e1;
+  color: #d4d4d8;
 }
 
 /* SVG keyframe-driven animations */
@@ -184,17 +178,15 @@ a {
   inset: -10% -10% auto -10%;
   height: 70vh;
   background:
-    radial-gradient(40% 50% at 20% 30%, rgba(34, 211, 238, 0.18), transparent 60%),
-    radial-gradient(35% 45% at 80% 20%, rgba(168, 85, 247, 0.18), transparent 60%),
-    radial-gradient(30% 40% at 50% 70%, rgba(163, 230, 53, 0.12), transparent 60%);
-  filter: blur(40px);
+    radial-gradient(40% 50% at 20% 30%, rgba(255, 255, 255, 0.06), transparent 60%),
+    radial-gradient(35% 45% at 80% 20%, rgba(255, 255, 255, 0.04), transparent 60%);
+  filter: blur(50px);
   pointer-events: none;
 }
 
-/* Hide noisy outline on click for buttons keeping keyboard ring */
 button:focus { outline: none; }
 button:focus-visible {
-  outline: 2px solid #22d3ee;
+  outline: 2px solid #fafafa;
   outline-offset: 2px;
   border-radius: 8px;
 }
