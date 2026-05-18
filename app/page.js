@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 const BASE_URL = "https://api.freeapi.app";
-const DOCS_URL = "https://api.freeapi.app";
+const DOCS_URL = "/docs";
 const REPO_URL = "https://github.com/hiteshchoudhary/apihub";
 
 /* ─────────────── animation helpers ─────────────── */
@@ -77,8 +77,8 @@ function Nav() {
             <a href="#anatomy" className="hover:text-stone-50 transition">Anatomy</a>
             <a href="#playground" className="hover:text-stone-50 transition">Playground</a>
             <a href="#why" className="hover:text-stone-50 transition">Why</a>
-            <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-stone-50 transition inline-flex items-center gap-1">
-              Docs <ArrowUpRight size={13} />
+            <a href={DOCS_URL} className="hover:text-stone-50 transition inline-flex items-center gap-1">
+              Docs
             </a>
           </nav>
           <a
@@ -317,8 +317,6 @@ function Hero() {
           <motion.div variants={rise} className="mt-8 flex flex-wrap gap-3">
             <a
               href={DOCS_URL}
-              target="_blank"
-              rel="noreferrer"
               className="group relative inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-950 bg-white hover:bg-stone-100 transition"
             >
               <BookOpen size={16} />
@@ -1092,8 +1090,6 @@ function CTA() {
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <a
                 href={DOCS_URL}
-                target="_blank"
-                rel="noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14px] font-semibold text-stone-950 bg-white hover:bg-stone-100 transition"
               >
                 <BookOpen size={16} /> Start with the docs <ArrowRight size={15} />
@@ -1126,7 +1122,7 @@ function Footer() {
           <a href={REPO_URL} target="_blank" rel="noreferrer" className="hover:text-stone-100 inline-flex items-center gap-1.5">
             <Github size={14} /> GitHub
           </a>
-          <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-stone-100 inline-flex items-center gap-1.5">
+          <a href={DOCS_URL} className="hover:text-stone-100 inline-flex items-center gap-1.5">
             <BookOpen size={14} /> Docs
           </a>
           <a href="https://www.youtube.com/playlist?list=PLu71SKxNbfoBAaWGtn9GA2PTw0HO0tXzq" target="_blank" rel="noreferrer" className="hover:text-stone-100">
