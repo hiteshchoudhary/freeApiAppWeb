@@ -89,7 +89,7 @@ function Explore({ onTry }) {
         <div
           role="tablist"
           aria-label="Endpoint categories"
-          className="no-scrollbar flex gap-1 overflow-x-auto border-b border-black/[0.06] p-2 md:flex-col md:overflow-visible md:border-b-0 md:border-r"
+          className="no-scrollbar flex gap-1 overflow-x-auto border-b border-ink/[0.06] p-2 md:flex-col md:overflow-visible md:border-b-0 md:border-r"
         >
           {CATALOG.map((c) => {
             const selected = c.id === active;
@@ -101,8 +101,8 @@ function Explore({ onTry }) {
                 onClick={() => setActive(c.id)}
                 className={`flex shrink-0 items-center justify-between gap-4 rounded-xl px-3 py-2 text-left text-sm transition-colors ${
                   selected
-                    ? "bg-white font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.08)]"
-                    : "text-ink-2 hover:bg-black/[0.04] hover:text-ink"
+                    ? "bg-surface font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.08)]"
+                    : "text-ink-2 hover:bg-ink/[0.04] hover:text-ink"
                 }`}
               >
                 {c.name}
@@ -115,7 +115,7 @@ function Explore({ onTry }) {
         <div role="tabpanel" className="min-w-0 p-5 sm:p-7">
           <h3 className="text-xl font-semibold tracking-tight">{category.name}</h3>
           <p className="mt-1 text-sm text-ink-2">{category.blurb}</p>
-          <ul className="mt-5 divide-y divide-black/[0.06]">
+          <ul className="mt-5 divide-y divide-ink/[0.06]">
             {category.endpoints.map((e) => (
               <li key={e.method + e.path} className="flex items-center gap-3 py-3 sm:gap-4">
                 <span className="w-12 shrink-0 font-mono text-[11px] font-semibold text-ink-2">{e.method}</span>
@@ -133,7 +133,7 @@ function Explore({ onTry }) {
                 ) : (
                   <Link
                     href={DOCS_URL}
-                    className="inline-flex shrink-0 items-center gap-0.5 rounded-full px-3 py-1.5 text-[13px] text-ink-3 transition-colors hover:bg-black/[0.04] hover:text-ink"
+                    className="inline-flex shrink-0 items-center gap-0.5 rounded-full px-3 py-1.5 text-[13px] text-ink-3 transition-colors hover:bg-ink/[0.04] hover:text-ink"
                   >
                     Docs <ArrowUpRight className="size-3.5" aria-hidden />
                   </Link>
@@ -206,7 +206,7 @@ function Responses() {
       <motion.div {...reveal} className="mx-auto mt-12 grid max-w-5xl items-start gap-6 lg:grid-cols-[1.25fr_1fr]">
         <div className="glass min-w-0 rounded-[28px] p-3">
           <div className="flex items-center justify-between gap-2 px-2 pb-3 pt-1">
-            <div role="tablist" aria-label="Response type" className="inline-flex rounded-full bg-black/[0.05] p-0.5">
+            <div role="tablist" aria-label="Response type" className="inline-flex rounded-full bg-ink/[0.05] p-0.5">
               {["success", "error"].map((k) => (
                 <button
                   key={k}
@@ -214,7 +214,7 @@ function Responses() {
                   aria-selected={kind === k}
                   onClick={() => setKind(k)}
                   className={`rounded-full px-3.5 py-1 text-[13px] capitalize transition-all ${
-                    kind === k ? "bg-white font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.1)]" : "text-ink-2 hover:text-ink"
+                    kind === k ? "bg-surface font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.1)]" : "text-ink-2 hover:text-ink"
                   }`}
                 >
                   {k}
@@ -292,7 +292,7 @@ function QuickStart({ path }) {
 
         <div className="glass min-w-0 rounded-[28px] p-3">
           <div className="flex items-center justify-between gap-2 px-2 pb-3 pt-1">
-            <div role="tablist" aria-label="Language" className="inline-flex rounded-full bg-black/[0.05] p-0.5">
+            <div role="tablist" aria-label="Language" className="inline-flex rounded-full bg-ink/[0.05] p-0.5">
               {Object.keys(SNIPPETS).map((l) => (
                 <button
                   key={l}
@@ -300,7 +300,7 @@ function QuickStart({ path }) {
                   aria-selected={lang === l}
                   onClick={() => setLang(l)}
                   className={`rounded-full px-3 py-1 text-[13px] transition-all ${
-                    lang === l ? "bg-white font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.1)]" : "text-ink-2 hover:text-ink"
+                    lang === l ? "bg-surface font-medium text-ink shadow-[0_1px_3px_rgb(0_0_0/0.1)]" : "text-ink-2 hover:text-ink"
                   }`}
                 >
                   {l}
@@ -376,7 +376,7 @@ function OpenSource() {
         </div>
 
         <div className="well min-w-0 rounded-2xl">
-          <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-2">
+          <div className="flex items-center justify-between border-b border-ink/[0.06] px-4 py-2">
             <span className="font-mono text-xs text-ink-3">Terminal</span>
             <CopyButton text={SELF_HOST} />
           </div>

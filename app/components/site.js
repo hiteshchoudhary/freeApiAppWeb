@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Github } from "lucide-react";
 import { DOCS_URL, REPO_URL } from "../config";
+import { ThemeToggle } from "./theme";
 
 // Height the docs reserve above Scalar's sticky sidebar (nav + its top margin)
 export const NAV_HEIGHT = 72;
@@ -11,7 +12,7 @@ export const NAV_HEIGHT = 72;
 export function LogoMark({ size = 26 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
-      <rect width="32" height="32" rx="8" fill="#0071e3" />
+      <rect width="32" height="32" rx="8" className="fill-azure" />
       <path
         d="M12.5 9.5c-2 0-3 1-3 3v1.5c0 1.2-.6 2-1.8 2 1.2 0 1.8.8 1.8 2v1.5c0 2 1 3 3 3M19.5 9.5c2 0 3 1 3 3v1.5c0 1.2.6 2 1.8 2-1.2 0-1.8.8-1.8 2v1.5c0 2-1 3-3 3"
         fill="none"
@@ -63,7 +64,7 @@ export function SiteNav() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="rounded-full px-3 py-1.5 text-[13px] text-ink-2 transition-colors hover:bg-black/[0.04] hover:text-ink"
+                className="rounded-full px-3 py-1.5 text-[13px] text-ink-2 transition-colors hover:bg-ink/[0.04] hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -71,12 +72,13 @@ export function SiteNav() {
           ))}
         </ul>
         <div className="flex items-center gap-1">
+          <ThemeToggle />
           <a
             href={REPO_URL}
             target="_blank"
             rel="noreferrer"
             aria-label="FreeAPI on GitHub"
-            className="grid size-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-black/[0.04] hover:text-ink"
+            className="grid size-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-ink/[0.04] hover:text-ink"
           >
             <Github className="size-[18px]" aria-hidden />
           </a>
@@ -97,14 +99,14 @@ export function Glow({ className = "" }) {
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute -z-10 rounded-full bg-azure opacity-[0.16] blur-[110px] ${className}`}
+      className={`pointer-events-none absolute -z-10 rounded-full bg-azure opacity-[var(--glow-opacity)] blur-[110px] ${className}`}
     />
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-black/[0.06]">
+    <footer className="border-t border-ink/[0.06]">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-[13px] text-ink-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <LogoMark size={20} />

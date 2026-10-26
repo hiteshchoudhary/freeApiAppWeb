@@ -1,5 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+
+// Colours are CSS variables (RGB channels in globals.css) so they flip with the theme and still take opacity modifiers
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,17 +18,18 @@ module.exports = {
         mono: ["ui-monospace", "SF Mono", "var(--font-mono)", "Menlo", "monospace"],
       },
       colors: {
-        canvas: "#f5f5f7",
+        canvas: token("canvas"),
+        surface: token("surface"),
         ink: {
-          DEFAULT: "#1d1d1f",
-          2: "#6e6e73",
-          3: "#86868b",
+          DEFAULT: token("ink"),
+          2: token("ink-2"),
+          3: token("ink-3"),
         },
         // The one colour on the site
         azure: {
-          DEFAULT: "#0071e3",
-          hover: "#0077ed",
-          soft: "#e8f2fd",
+          DEFAULT: token("azure"),
+          hover: token("azure-hover"),
+          soft: "var(--azure-soft)",
         },
       },
       letterSpacing: {

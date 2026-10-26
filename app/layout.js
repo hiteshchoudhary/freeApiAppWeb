@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { themeScript } from "./theme-script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +22,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    // The theme script adds the `dark` class before React hydrates
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-canvas font-sans text-ink antialiased">{children}</body>
     </html>
   );

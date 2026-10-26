@@ -43,7 +43,7 @@ export function CopyButton({ text, label = "Copy" }) {
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
       }}
-      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs text-ink-2 transition-colors hover:bg-black/[0.05] hover:text-ink"
+      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs text-ink-2 transition-colors hover:bg-ink/[0.05] hover:text-ink"
     >
       {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
       {copied ? "Copied" : label}
@@ -142,7 +142,7 @@ export function RequestConsole({ path, onPathChange, runToken }) {
             type="button"
             onClick={() => pick(p.path)}
             className={`shrink-0 rounded-full px-3 py-1 text-xs transition-colors ${
-              path === p.path ? "bg-ink text-white" : "bg-black/[0.04] text-ink-2 hover:bg-black/[0.07] hover:text-ink"
+              path === p.path ? "bg-ink text-canvas" : "bg-ink/[0.04] text-ink-2 hover:bg-ink/[0.07] hover:text-ink"
             }`}
           >
             {p.label}
@@ -150,7 +150,7 @@ export function RequestConsole({ path, onPathChange, runToken }) {
         ))}
       </div>
 
-      <div className="border-t border-black/[0.06] bg-white/40">
+      <div className="border-t border-ink/[0.06] bg-surface/40">
         <div className="flex items-center justify-between gap-3 px-4 py-2.5 text-xs sm:px-5" aria-live="polite">
           {result?.status ? (
             <span className="flex items-center gap-3 text-ink-2">
@@ -176,7 +176,7 @@ export function RequestConsole({ path, onPathChange, runToken }) {
           ) : (
             <div className="space-y-2.5 pt-1" aria-hidden>
               {[60, 85, 45, 70, 55].map((w, i) => (
-                <div key={i} className="h-3 rounded-full bg-black/[0.05]" style={{ width: `${w}%` }} />
+                <div key={i} className="h-3 rounded-full bg-ink/[0.05]" style={{ width: `${w}%` }} />
               ))}
             </div>
           )}
