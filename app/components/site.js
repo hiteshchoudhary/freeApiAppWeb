@@ -2,168 +2,136 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { DOCS_URL, REPO_URL } from "../config";
 
-// Height the docs reserve above Scalar's sticky sidebar (nav pill + its top margin)
-export const NAV_HEIGHT = 76;
+// Height the docs reserve above Scalar's sticky sidebar (nav + its top margin)
+export const NAV_HEIGHT = 72;
 
-export function LogoMark({ size = 28 }) {
+export function LogoMark({ size = 26 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" aria-hidden>
-      <defs>
-        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#64d2ff" />
-          <stop offset="100%" stopColor="#bf5af2" />
-        </linearGradient>
-      </defs>
-      <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#logo-grad)" />
-      <rect x="1.5" y="1.5" width="37" height="37" rx="10.5" fill="none" stroke="#fff" strokeOpacity="0.35" />
-      <path d="M11 26 L17 14 L29 14" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="29" cy="14" r="2.8" fill="#fff" />
-      <circle cx="11" cy="26" r="2.4" fill="#fff" />
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
+      <rect width="32" height="32" rx="8" fill="#0071e3" />
+      <path
+        d="M12.5 9.5c-2 0-3 1-3 3v1.5c0 1.2-.6 2-1.8 2 1.2 0 1.8.8 1.8 2v1.5c0 2 1 3 3 3M19.5 9.5c2 0 3 1 3 3v1.5c0 1.2.6 2 1.8 2-1.2 0-1.8.8-1.8 2v1.5c0 2-1 3-3 3"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label="FreeAPI home">
+    <Link href="/" className="flex items-center gap-2" aria-label="FreeAPI home">
       <LogoMark />
-      <span className="text-[17px] font-semibold tracking-tight text-white">freeAPI</span>
+      <span className="text-[17px] font-semibold tracking-tight">freeAPI</span>
     </Link>
   );
 }
 
 const NAV_LINKS = [
-  { label: "Endpoints", href: "/#endpoints" },
-  { label: "Playground", href: "/#playground" },
-  { label: "Docs", href: DOCS_URL },
-  { label: "Learn", href: "https://www.chaicode.com/", external: true },
+  { label: "Explore", href: "/#explore" },
+  { label: "Responses", href: "/#responses" },
+  { label: "Quick start", href: "/#quick-start" },
+  { label: "Open source", href: "/#open-source" },
 ];
 
-/** A floating frosted pill that stays at the top; it gets denser once the page scrolls. */
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 4);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-3 sm:px-6">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
       <nav
-        className={`mx-auto flex h-14 max-w-6xl items-center justify-between gap-5 rounded-full pl-4 pr-2 transition-[background-color,box-shadow] duration-300 sm:pl-5 ${
-          scrolled ? "glass-strong" : "glass"
+        className={`mx-auto flex h-14 max-w-5xl items-center justify-between rounded-2xl pl-4 pr-2 transition-[background-color,box-shadow,border-color] duration-300 ${
+          scrolled ? "glass-thick" : "border border-transparent"
         }`}
       >
         <Logo />
-        <div className="flex items-center gap-1 sm:gap-2">
-          <ul className="hidden items-center md:flex">
-            {NAV_LINKS.map((link) => (
-              <li key={link.label}>
-                {link.external ? (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    {link.label} <ArrowUpRight className="size-3.5" aria-hidden />
-                  </a>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="rounded-full px-3.5 py-2 text-sm text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-          <Link
-            href={DOCS_URL}
-            className="rounded-full px-3 py-2 text-sm text-white/70 transition-colors hover:bg-white/10 hover:text-white md:hidden"
-          >
-            Docs
-          </Link>
+        <ul className="hidden items-center gap-1 md:flex">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="rounded-full px-3 py-1.5 text-[13px] text-ink-2 transition-colors hover:bg-black/[0.04] hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-1">
           <a
             href={REPO_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-white/85"
+            aria-label="FreeAPI on GitHub"
+            className="grid size-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-black/[0.04] hover:text-ink"
           >
-            <Github className="size-4" aria-hidden />
-            <span className="hidden sm:inline">GitHub</span>
-            <span className="text-xs text-black/50">9.3k</span>
+            <Github className="size-[18px]" aria-hidden />
           </a>
+          <Link
+            href={DOCS_URL}
+            className="rounded-full bg-azure px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-azure-hover"
+          >
+            Docs
+          </Link>
         </div>
       </nav>
     </header>
   );
 }
 
-/** The colourful backdrop the glass blurs. `dim` tones it down behind long reading pages. */
-export function Wallpaper({ dim = false }) {
+/** A soft pool of blue light for the glass above it to frost. */
+export function Glow({ className = "" }) {
   return (
-    <div className={`wallpaper ${dim ? "dim" : ""}`} aria-hidden>
-      <span className="orb-1" />
-      <span className="orb-2" />
-      <span className="orb-3" />
-    </div>
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute -z-10 rounded-full bg-azure opacity-[0.16] blur-[110px] ${className}`}
+    />
   );
 }
-
-export function GlassBadge({ children }) {
-  return (
-    <span className="glass inline-flex w-fit items-center gap-2 rounded-full px-4 py-1.5 text-sm text-white/80">
-      <span className="size-1.5 rounded-full bg-accent" />
-      {children}
-    </span>
-  );
-}
-
-const FOOTER_LINKS = [
-  { label: "GitHub", href: REPO_URL, external: true },
-  { label: "Docs", href: DOCS_URL },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/playlist?list=PLu71SKxNbfoBAaWGtn9GA2PTw0HO0tXzq",
-    external: true,
-  },
-  { label: "Chaicode", href: "https://chaicode.com", external: true },
-];
 
 export function SiteFooter() {
   return (
-    <footer className="px-4 pb-6 sm:px-6">
-      <div className="glass mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-3xl px-6 py-8 sm:flex-row sm:px-8">
-        <div className="flex flex-col items-center gap-2 sm:items-start">
-          <Logo />
-          <p className="text-sm text-white/50">Free, open source and MIT licensed.</p>
+    <footer className="border-t border-black/[0.06]">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-[13px] text-ink-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <LogoMark size={20} />
+          <span>FreeAPI is free, open source and MIT licensed.</span>
         </div>
-        <ul className="flex flex-wrap items-center justify-center gap-1">
-          {FOOTER_LINKS.map((link) => {
-            const cls =
-              "rounded-full px-3 py-1.5 text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white";
-            return (
-              <li key={link.label}>
-                {link.external ? (
-                  <a href={link.href} target="_blank" rel="noreferrer" className={cls}>
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link href={link.href} className={cls}>
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            );
-          })}
+        <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <li>
+            <Link href={DOCS_URL} className="hover:text-ink">Docs</Link>
+          </li>
+          <li>
+            <a href={REPO_URL} target="_blank" rel="noreferrer" className="hover:text-ink">GitHub</a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/playlist?list=PLu71SKxNbfoBAaWGtn9GA2PTw0HO0tXzq"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-ink"
+            >
+              Video course
+            </a>
+          </li>
+          <li>
+            <a href="https://chaicode.com" target="_blank" rel="noreferrer" className="hover:text-ink">
+              Made by Chaicode
+            </a>
+          </li>
         </ul>
       </div>
     </footer>

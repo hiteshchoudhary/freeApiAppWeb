@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.env*
+.insta
+.claude
+.codex
+.agents
+Dockerfile
+.dockerignore

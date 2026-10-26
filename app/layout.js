@@ -16,13 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: "FreeAPI - Open Source API Hub | Chaicode",
   description:
-    "Master API integration with free, open-source APIs. Build real portfolio projects with authentication, e-commerce, social media, and 50+ endpoints.",
+    "Practice on a real API. 50+ free endpoints for auth, e-commerce, social media, todos and more. No keys, no sign up.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="bg-canvas font-sans text-ink antialiased">{children}</body>
     </html>
   );
 }
