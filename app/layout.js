@@ -1,16 +1,9 @@
 import "./globals.css";
-import { Manrope, Anton, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-});
-
-const anton = Anton({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-display",
   display: "swap",
 });
 
@@ -28,13 +21,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${manrope.variable} ${anton.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="font-body antialiased">
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
